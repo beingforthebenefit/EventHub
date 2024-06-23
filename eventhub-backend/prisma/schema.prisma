@@ -1,0 +1,48 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  role      UserRole @default(USER)
+  events    Event[]  @relation("Organizer")
+  attending Attendee[]
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime
+  time        String
+  location    String
+  image       String?
+  organizerId Int
+  organizer   User      @relation("Organizer", fields: [organizerId], references: [id])
+  attendees   Attendee[]
+}
+
+model Attendee {
+  userId  Int
+  eventId Int
+  user    User @relation(fields: [userId], references: [id])
+  event   Event @relation(fields: [eventId], references: [id])
+
+  @@id([userId, eventId])
+}
+
+enum UserRole {
+  ADMIN
+  ORGANIZER
+  USER
+}
