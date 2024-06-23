@@ -1,10 +1,18 @@
 import express from 'express'
+import cors from 'cors'
 import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
 import { PrismaClient } from '@prisma/client'
+import authRoutes from './routes/auth'
 
 const app = express()
 const prisma = new PrismaClient()
+
+app.use(cors())
+app.use(express.json())
+
+// Use the auth routes
+app.use('/auth', authRoutes)
 
 // GraphQL schema
 const schema = buildSchema(`
