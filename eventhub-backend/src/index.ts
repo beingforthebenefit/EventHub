@@ -4,6 +4,7 @@ import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
 import { PrismaClient } from '@prisma/client'
 import authRoutes from './routes/auth'
+import eventRoutes from './routes/event'
 import { authenticate } from './middleware/authMiddleware'
 
 const app = express()
@@ -14,6 +15,9 @@ app.use(express.json())
 
 // Use the auth routes
 app.use('/auth', authRoutes)
+
+// Use the event routes
+app.use('/event', eventRoutes)
 
 // Protect routes that require authentication
 app.use('/protected', authenticate, (req, res) => {
