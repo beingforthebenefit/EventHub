@@ -47,15 +47,19 @@ app.use(
   })
 )
 
+const port = process.env.PORT || 4000;
+
 // Ensure that Prisma is connected
 prisma.$connect()
   .then(() => {
     console.log('Connected to the database')
-    app.listen(4000, () => {
-      console.log('Server is running on http://localhost:4000/graphql')
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}/graphql`)
     })
   })
   .catch((e: any) => {
     console.error('Failed to connect to the database', e)
     process.exit(1)
   })
+
+export default app
