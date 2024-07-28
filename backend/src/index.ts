@@ -3,10 +3,11 @@ import { ApolloServer } from "apollo-server-express"
 import Express from "express"
 import { buildSchema } from "type-graphql"
 import { MessageResolver } from "./resolvers/MessageResolver"
+import { EventResolver } from "./resolvers/EventResolver"
 
 async function main() {
   const schema = await buildSchema({
-    resolvers: [MessageResolver],
+    resolvers: [MessageResolver, EventResolver],
   })
 
   const server = new ApolloServer({ schema })

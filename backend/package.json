@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "eventhub-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Modern Event Management and Registration Platform",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/index.ts",
@@ -13,6 +13,7 @@
   "author": "Gerald Todd",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.17.0",
     "apollo-server-express": "^3.13.0",
     "express": "^4.19.2",
     "graphql": "^16.9.0",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
+    "prisma": "^5.17.0",
     "ts-jest": "^29.2.3",
     "ts-node-dev": "^2.0.0"
   }

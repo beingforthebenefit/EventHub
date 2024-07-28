@@ -9,6 +9,9 @@ import Dashboard from './components/Dashboard'
 import About from './components/About'
 import Services from './components/Services'
 import Contact from './components/Contact'
+import EventList from './components/EventList'
+import EventDetail from './components/EventDetail'
+import Register from './components/Register'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
@@ -27,6 +30,9 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/events" element={<EventList />} />
+                <Route path="/events/:id" element={<EventDetail />} />
+                <Route path="/register" element={<Register />} />
               </Routes>
             </main>
             <Footer />
