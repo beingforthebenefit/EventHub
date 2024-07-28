@@ -67,6 +67,7 @@ test('toggles drawer on mobile', async () => {
   
   // Check if the drawer items appear
   expect(screen.getByText(/Home/i)).toBeVisible()
+  expect(screen.getByText(/Events/i)).toBeVisible()
   expect(screen.getByText(/About/i)).toBeVisible()
   expect(screen.getByText(/Services/i)).toBeVisible()
   expect(screen.getByText(/Contact/i)).toBeVisible()

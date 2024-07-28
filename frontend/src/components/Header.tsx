@@ -17,6 +17,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import HomeIcon from '@mui/icons-material/Home'
+import EventIcon from '@mui/icons-material/Event'
 import InfoIcon from '@mui/icons-material/Info'
 import BuildIcon from '@mui/icons-material/Build'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
@@ -51,6 +52,12 @@ const Header: React.FC = () => {
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button component={Link} to="/events" onClick={handleLinkClick}>
+          <ListItemIcon>
+            <EventIcon />
+          </ListItemIcon>
+          <ListItemText primary="Events" />
         </ListItem>
         <ListItem button component={Link} to="/about" onClick={handleLinkClick}>
           <ListItemIcon>
@@ -94,6 +101,9 @@ const Header: React.FC = () => {
           <div style={{ display: 'flex' }}>
             <Button color="inherit" component={Link} to="/">
               Home
+            </Button>
+            <Button color="inherit" component={Link} to="/events">
+              Events
             </Button>
             <Button color="inherit" component={Link} to="/about">
               About

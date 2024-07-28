@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Resolver, Query, Mutation, Arg, Int } from "type-graphql";
 import { Event } from "../models/Event";
 import prisma from "../prisma";
 
@@ -7,6 +7,13 @@ export class EventResolver {
   @Query(() => [Event])
   async events() {
     return prisma.event.findMany();
+  }
+
+  @Query(() => Event, { nullable: true })
+  async event(@Arg("id", () => Int) id: number) {
+    return prisma.event.findUnique({
+      where: { id },
+    });
   }
 
   @Mutation(() => Event)
