@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     <footer>
       <Container maxWidth="sm">
         <Typography variant="body1" align="center">
-          &copy; 2024 My App. All rights reserved.
+          &copy; 2024 EventHub. All rights reserved.
         </Typography>
       </Container>
     </footer>

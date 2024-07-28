@@ -9,7 +9,7 @@ test('renders App component', () => {
       <App />
     </MockedProvider>,
   )
-  expect(screen.getAllByText(/My App/i)[0]).toBeInTheDocument()
+  expect(screen.getAllByText(/EventHub/i)[0]).toBeInTheDocument()
   expect(screen.getByText(/Welcome to the dashboard!/i)).toBeInTheDocument()
   expect(screen.getByText(/Get Started/i)).toBeInTheDocument()
 })

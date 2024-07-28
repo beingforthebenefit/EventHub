@@ -45,3 +45,14 @@ export const CREATE_EVENT = gql`
     }
   }
 `
+
+export const REGISTER_EVENT = gql`
+  mutation RegisterEvent($eventId: Int!) {
+    registerEvent(eventId: $eventId) {
+      id
+      userId
+      eventId
+      createdAt
+    }
+  }
+`

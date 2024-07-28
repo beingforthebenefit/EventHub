@@ -1,29 +1,21 @@
 import React, {useState} from 'react'
 import {gql, useMutation} from '@apollo/client'
 import {Container, TextField, Button, Typography, Box} from '@mui/material'
-
-const REGISTER_EVENT = gql`
-  mutation RegisterEvent($eventId: Int!) {
-    registerEvent(eventId: $eventId) {
-      id
-      userId
-      eventId
-      createdAt
-    }
-  }
-`
+import {useNotification} from '../contexts/NotificationContext'
+import { REGISTER_EVENT } from 'src/queries/eventQueries'
 
 const RegisterEvent: React.FC = () => {
   const [eventId, setEventId] = useState('')
   const [registerEvent] = useMutation(REGISTER_EVENT)
+  const {showNotification} = useNotification()
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       await registerEvent({variables: {eventId: parseInt(eventId)}})
-      alert('Registered for event successfully!')
+      showNotification('Registered for event successfully!', 'success')
     } catch (err) {
-      alert('Error registering for event')
+      showNotification('Error registering for event', 'error')
     }
   }
 

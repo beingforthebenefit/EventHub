@@ -124,7 +124,7 @@ const Header: React.FC = () => {
           </IconButton>
         )}
         <Typography variant="h6" style={{flexGrow: 1}}>
-          My App
+          EventHub
         </Typography>
         {isDesktop && (
           <div style={{display: 'flex'}}>

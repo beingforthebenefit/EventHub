@@ -44,6 +44,16 @@ const mocks = [
   },
 ]
 
+test('renders EventList component loading state', () => {
+  render(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <EventList />
+    </MockedProvider>,
+  )
+
+  expect(screen.getByRole('progressbar')).toBeInTheDocument()
+})
+
 test('renders EventList component', async () => {
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
@@ -52,7 +62,7 @@ test('renders EventList component', async () => {
   )
 
   // Check if loading state is displayed
-  expect(screen.getByText(/Loading.../i)).toBeInTheDocument()
+  expect(screen.getByRole('progressbar')).toBeInTheDocument()
 
   // Wait for the data to be loaded
   await waitFor(() => {

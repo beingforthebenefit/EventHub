@@ -1,26 +1,23 @@
 import React, {useState} from 'react'
-import {gql, useMutation} from '@apollo/client'
+import {useMutation} from '@apollo/client'
 import {Container, TextField, Button, Typography, Box} from '@mui/material'
-
-const LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password)
-  }
-`
+import {useNotification} from '../contexts/NotificationContext'
+import { LOGIN } from '../queries/userQueries'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [login] = useMutation(LOGIN)
+  const {showNotification} = useNotification()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       const {data} = await login({variables: {email, password}})
       localStorage.setItem('token', data.login)
-      alert('User logged in successfully!')
+      showNotification('User logged in successfully!', 'success')
     } catch (err) {
-      alert('Error logging in')
+      showNotification('Error logging in', 'error')
     }
   }
 

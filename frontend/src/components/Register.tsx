@@ -1,20 +1,22 @@
 import React, {useState} from 'react'
 import {useMutation} from '@apollo/client'
 import {Container, TextField, Button, Typography, Box} from '@mui/material'
-import {REGISTER} from '../mutations/userMutations'
+import {REGISTER} from '../queries/userQueries'
+import {useNotification} from '../contexts/NotificationContext'
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [register] = useMutation(REGISTER)
+  const {showNotification} = useNotification()
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       await register({variables: {email, password}})
-      alert('User registered successfully!')
+      showNotification('User registered successfully!', 'success')
     } catch (err) {
-      alert('Error registering user')
+      showNotification('Error registering user', 'error')
     }
   }
 

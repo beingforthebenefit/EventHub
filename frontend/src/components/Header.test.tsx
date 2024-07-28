@@ -35,7 +35,7 @@ describe('Header component', () => {
     )
 
     // Check if the main title is present
-    expect(screen.getByText(/My App/i)).toBeInTheDocument()
+    expect(screen.getByText(/EventHub/i)).toBeInTheDocument()
 
     // Check if the account icon button is present
     expect(
