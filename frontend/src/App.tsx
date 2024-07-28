@@ -10,10 +10,10 @@ import {
 } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Dashboard from './components/Dashboard'
 import About from './components/About'
 import Contact from './components/Contact'
 import EventList from './components/EventList'
+import MyEvents from './components/MyEvents'
 import EventDetail from './components/EventDetail'
 import Register from './components/Register'
 import Login from './components/Login'
@@ -39,10 +39,10 @@ function App() {
               <Header />
               <main style={{flexGrow: 1}}>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/" element={<EventList />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
-                  <Route path="/events" element={<EventList />} />
+                  <Route path="/my-events" element={<MyEvents />} />
                   <Route path="/events/:id" element={<EventDetail />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />

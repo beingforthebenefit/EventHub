@@ -12,6 +12,18 @@ export const GET_EVENT = gql`
   }
 `
 
+export const GET_MY_EVENTS = gql`
+  query GetMyEvents {
+    myEvents {
+      id
+      title
+      description
+      date
+      location
+    }
+  }
+`
+
 export const GET_EVENTS = gql`
   query GetEvents {
     events {

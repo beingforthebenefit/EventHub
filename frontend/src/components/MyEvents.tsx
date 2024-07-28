@@ -1,6 +1,6 @@
 import React from 'react'
 import {useQuery} from '@apollo/client'
-import {GET_EVENTS} from '../queries/eventQueries'
+import {GET_MY_EVENTS} from '../queries/eventQueries'
 import {
   CircularProgress,
   Container,
@@ -13,8 +13,8 @@ import {
   Button,
 } from '@mui/material'
 
-const EventList = () => {
-  const {loading, error, data} = useQuery(GET_EVENTS)
+const MyEvents: React.FC = () => {
+  const {loading, error, data} = useQuery(GET_MY_EVENTS)
 
   if (loading) return <CircularProgress />
   if (error)
@@ -24,10 +24,10 @@ const EventList = () => {
     <Container>
       <Box py={5}>
         <Typography variant="h4" gutterBottom>
-          Event List
+          My Events
         </Typography>
         <Grid container spacing={3}>
-          {data.events.map((event: any) => (
+          {data.myEvents.map((event: any) => (
             <Grid item xs={12} md={4} key={event.id}>
               <Card>
                 <CardContent>
@@ -58,4 +58,4 @@ const EventList = () => {
   )
 }
 
-export default EventList
+export default MyEvents

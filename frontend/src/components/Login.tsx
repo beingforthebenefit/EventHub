@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useMutation} from '@apollo/client'
 import {Container, TextField, Button, Typography, Box} from '@mui/material'
 import {useNotification} from '../contexts/NotificationContext'
-import { LOGIN } from '../queries/userQueries'
+import {LOGIN} from '../queries/userQueries'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -16,6 +16,7 @@ const Login: React.FC = () => {
       const {data} = await login({variables: {email, password}})
       localStorage.setItem('token', data.login)
       showNotification('User logged in successfully!', 'success')
+      window.location.href = '/'
     } catch (err) {
       showNotification('Error logging in', 'error')
     }

@@ -19,7 +19,6 @@ import MenuItem from '@mui/material/MenuItem'
 import HomeIcon from '@mui/icons-material/Home'
 import EventIcon from '@mui/icons-material/Event'
 import InfoIcon from '@mui/icons-material/Info'
-import BuildIcon from '@mui/icons-material/Build'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
 import {jwtDecode} from 'jwt-decode'
 
@@ -70,13 +69,13 @@ const Header: React.FC = () => {
         <ListItem
           button
           component={Link}
-          to="/events"
+          to="/my-events"
           onClick={handleLinkClick}
         >
           <ListItemIcon>
             <EventIcon />
           </ListItemIcon>
-          <ListItemText primary="Events" />
+          <ListItemText primary="My Events" />
         </ListItem>
         <ListItem button component={Link} to="/about" onClick={handleLinkClick}>
           <ListItemIcon>
@@ -120,8 +119,8 @@ const Header: React.FC = () => {
             <Button color="inherit" component={Link} to="/">
               Home
             </Button>
-            <Button color="inherit" component={Link} to="/events">
-              Events
+            <Button color="inherit" component={Link} to="/my-events">
+              My Events
             </Button>
             <Button color="inherit" component={Link} to="/about">
               About
