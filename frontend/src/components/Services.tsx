@@ -1,11 +1,20 @@
 import React from 'react'
-import { Container, Typography, Box, Grid, Card, CardContent, CardActions, Button } from '@mui/material'
+import {
+  Container,
+  Typography,
+  Box,
+  Grid,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+} from '@mui/material'
 
 const Services: React.FC = () => {
   const services = [
-    { title: 'Service 1', description: 'Description of service 1' },
-    { title: 'Service 2', description: 'Description of service 2' },
-    { title: 'Service 3', description: 'Description of service 3' },
+    {title: 'Service 1', description: 'Description of service 1'},
+    {title: 'Service 2', description: 'Description of service 2'},
+    {title: 'Service 3', description: 'Description of service 3'},
   ]
 
   return (

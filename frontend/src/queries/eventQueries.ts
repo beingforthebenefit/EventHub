@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client'
 
 export const GET_EVENT = gql`
   query GetEvent($id: Int!) {
@@ -10,7 +10,7 @@ export const GET_EVENT = gql`
       location
     }
   }
-`;
+`
 
 export const GET_EVENTS = gql`
   query GetEvents {
@@ -22,11 +22,21 @@ export const GET_EVENTS = gql`
       location
     }
   }
-`;
+`
 
 export const CREATE_EVENT = gql`
-  mutation CreateEvent($title: String!, $description: String!, $date: Date!, $location: String!) {
-    createEvent(title: $title, description: $description, date: $date, location: $location) {
+  mutation CreateEvent(
+    $title: String!
+    $description: String!
+    $date: Date!
+    $location: String!
+  ) {
+    createEvent(
+      title: $title
+      description: $description
+      date: $date
+      location: $location
+    ) {
       id
       title
       description
@@ -34,4 +44,4 @@ export const CREATE_EVENT = gql`
       location
     }
   }
-`;
+`

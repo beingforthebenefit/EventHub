@@ -1,16 +1,24 @@
 import React from 'react'
-import { Container, Typography, Box, Paper, TextField, Button } from '@mui/material'
+import {
+  Container,
+  Typography,
+  Box,
+  Paper,
+  TextField,
+  Button,
+} from '@mui/material'
 
 const Contact: React.FC = () => {
   return (
     <Container>
       <Box py={5}>
-        <Paper elevation={3} style={{ padding: '16px' }}>
+        <Paper elevation={3} style={{padding: '16px'}}>
           <Typography variant="h4" gutterBottom>
             Contact Us
           </Typography>
           <Typography variant="body1" paragraph>
-            If you have any questions, feel free to reach out to us. We would love to hear from you.
+            If you have any questions, feel free to reach out to us. We would
+            love to hear from you.
           </Typography>
           <form noValidate autoComplete="off">
             <TextField

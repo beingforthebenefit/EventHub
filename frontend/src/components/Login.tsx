@@ -1,20 +1,26 @@
 import React, {useState} from 'react'
-import {useMutation} from '@apollo/client'
+import {gql, useMutation} from '@apollo/client'
 import {Container, TextField, Button, Typography, Box} from '@mui/material'
-import {REGISTER} from '../mutations/userMutations'
 
-const Register: React.FC = () => {
+const LOGIN = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password)
+  }
+`
+
+const Login: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [register] = useMutation(REGISTER)
+  const [login] = useMutation(LOGIN)
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      await register({variables: {email, password}})
-      alert('User registered successfully!')
+      const {data} = await login({variables: {email, password}})
+      localStorage.setItem('token', data.login)
+      alert('User logged in successfully!')
     } catch (err) {
-      alert('Error registering user')
+      alert('Error logging in')
     }
   }
 
@@ -22,9 +28,9 @@ const Register: React.FC = () => {
     <Container maxWidth="sm">
       <Box sx={{mt: 5}}>
         <Typography variant="h4" gutterBottom>
-          Register
+          Login
         </Typography>
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleLogin}>
           <TextField
             label="Email"
             type="email"
@@ -50,7 +56,7 @@ const Register: React.FC = () => {
             fullWidth
             sx={{mt: 2}}
           >
-            Register
+            Login
           </Button>
         </form>
       </Box>
@@ -58,4 +64,4 @@ const Register: React.FC = () => {
   )
 }
 
-export default Register
+export default Login

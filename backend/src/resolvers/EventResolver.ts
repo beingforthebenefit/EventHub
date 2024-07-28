@@ -5,12 +5,12 @@ import prisma from "../prisma";
 @Resolver()
 export class EventResolver {
   @Query(() => [Event])
-  async events() {
+  async events(): Promise<Event[]> {
     return prisma.event.findMany();
   }
 
   @Query(() => Event, { nullable: true })
-  async event(@Arg("id", () => Int) id: number) {
+  async event(@Arg("id", () => Int) id: number): Promise<Event | null> {
     return prisma.event.findUnique({
       where: { id },
     });
@@ -22,7 +22,7 @@ export class EventResolver {
     @Arg("description") description: string,
     @Arg("date") date: Date,
     @Arg("location") location: string
-  ) {
+  ): Promise<Event> {
     return prisma.event.create({
       data: { title, description, date, location }
     });

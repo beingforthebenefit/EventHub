@@ -1,12 +1,12 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_EVENTS } from '../queries/eventQueries';
+import React from 'react'
+import {useQuery} from '@apollo/client'
+import {GET_EVENTS} from '../queries/eventQueries'
 
 const EventList = () => {
-  const { loading, error, data } = useQuery(GET_EVENTS);
+  const {loading, error, data} = useQuery(GET_EVENTS)
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
 
   return (
     <div>
@@ -22,7 +22,7 @@ const EventList = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default EventList;
+export default EventList

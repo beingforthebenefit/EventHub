@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -12,7 +12,7 @@ import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useTheme } from '@mui/material/styles'
+import {useTheme} from '@mui/material/styles'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -21,12 +21,21 @@ import EventIcon from '@mui/icons-material/Event'
 import InfoIcon from '@mui/icons-material/Info'
 import BuildIcon from '@mui/icons-material/Build'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
+import {jwtDecode} from 'jwt-decode'
 
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
+
+  let email = ''
+  if (token) {
+    const decoded: {email: string} = jwtDecode(token)
+    email = decoded.email
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -44,6 +53,11 @@ const Header: React.FC = () => {
     setMobileOpen(false)
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   const drawer = (
     <div>
       <List>
@@ -53,7 +67,12 @@ const Header: React.FC = () => {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to="/events" onClick={handleLinkClick}>
+        <ListItem
+          button
+          component={Link}
+          to="/events"
+          onClick={handleLinkClick}
+        >
           <ListItemIcon>
             <EventIcon />
           </ListItemIcon>
@@ -65,13 +84,23 @@ const Header: React.FC = () => {
           </ListItemIcon>
           <ListItemText primary="About" />
         </ListItem>
-        <ListItem button component={Link} to="/services" onClick={handleLinkClick}>
+        <ListItem
+          button
+          component={Link}
+          to="/services"
+          onClick={handleLinkClick}
+        >
           <ListItemIcon>
             <BuildIcon />
           </ListItemIcon>
           <ListItemText primary="Services" />
         </ListItem>
-        <ListItem button component={Link} to="/contact" onClick={handleLinkClick}>
+        <ListItem
+          button
+          component={Link}
+          to="/contact"
+          onClick={handleLinkClick}
+        >
           <ListItemIcon>
             <ContactMailIcon />
           </ListItemIcon>
@@ -94,11 +123,11 @@ const Header: React.FC = () => {
             <MenuIcon />
           </IconButton>
         )}
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
+        <Typography variant="h6" style={{flexGrow: 1}}>
           My App
         </Typography>
         {isDesktop && (
-          <div style={{ display: 'flex' }}>
+          <div style={{display: 'flex'}}>
             <Button color="inherit" component={Link} to="/">
               Home
             </Button>
@@ -142,9 +171,39 @@ const Header: React.FC = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            {token
+              ? [
+                  <MenuItem key="email" disabled>
+                    {email}
+                  </MenuItem>,
+                  <MenuItem key="profile" onClick={handleClose}>
+                    Profile
+                  </MenuItem>,
+                  <MenuItem key="account" onClick={handleClose}>
+                    My account
+                  </MenuItem>,
+                  <MenuItem key="logout" onClick={handleLogout}>
+                    Logout
+                  </MenuItem>,
+                ]
+              : [
+                  <MenuItem
+                    key="login"
+                    component={Link}
+                    to="/login"
+                    onClick={handleClose}
+                  >
+                    Login
+                  </MenuItem>,
+                  <MenuItem
+                    key="register"
+                    component={Link}
+                    to="/register"
+                    onClick={handleClose}
+                  >
+                    Register
+                  </MenuItem>,
+                ]}
           </Menu>
         </div>
       </Toolbar>

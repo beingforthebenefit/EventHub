@@ -1,8 +1,8 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import Services from './Services'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { MemoryRouter } from 'react-router-dom'
+import {ThemeProvider, createTheme} from '@mui/material/styles'
+import {MemoryRouter} from 'react-router-dom'
 
 // Create a theme for the test
 const theme = createTheme()
@@ -13,7 +13,7 @@ test('renders Services component', async () => {
       <ThemeProvider theme={theme}>
         <Services />
       </ThemeProvider>
-    </MemoryRouter>
+    </MemoryRouter>,
   )
 
   // Check if the main title is present
