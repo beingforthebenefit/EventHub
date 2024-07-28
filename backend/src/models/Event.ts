@@ -1,19 +1,19 @@
-import { Field, ObjectType } from "type-graphql";
+import {Field, ObjectType} from 'type-graphql'
 
 @ObjectType()
 export class Event {
   @Field()
-  id!: number;
+  id!: number
 
   @Field()
-  title!: string;
+  title!: string
 
   @Field()
-  description!: string;
+  description!: string
 
   @Field()
-  date!: Date;
+  date!: Date
 
   @Field()
-  location!: string;
+  location!: string
 }

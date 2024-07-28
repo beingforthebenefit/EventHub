@@ -1,4 +1,4 @@
-import { MessageResolver } from '../resolvers/MessageResolver'
+import {MessageResolver} from '../resolvers/MessageResolver'
 
 test('returns message', () => {
   const resolver = new MessageResolver()

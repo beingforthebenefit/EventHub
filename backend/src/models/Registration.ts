@@ -1,24 +1,24 @@
-import { Field, Int, ObjectType } from "type-graphql";
-import { User } from "./User";
-import { Event } from "./Event";
+import {Field, Int, ObjectType} from 'type-graphql'
+import {User} from './User'
+import {Event} from './Event'
 
 @ObjectType()
 export class Registration {
   @Field(() => Int)
-  id!: number;
+  id!: number
 
   @Field(() => Int)
-  eventId!: number;
+  eventId!: number
 
   @Field(() => Int)
-  userId!: number;
+  userId!: number
 
   @Field()
-  createdAt!: Date;
+  createdAt!: Date
 
   @Field(() => Event)
-  event!: Event;
+  event!: Event
 
   @Field(() => User)
-  user!: User;
+  user!: User
 }
