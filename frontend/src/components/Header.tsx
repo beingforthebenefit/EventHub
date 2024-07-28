@@ -87,17 +87,6 @@ const Header: React.FC = () => {
         <ListItem
           button
           component={Link}
-          to="/services"
-          onClick={handleLinkClick}
-        >
-          <ListItemIcon>
-            <BuildIcon />
-          </ListItemIcon>
-          <ListItemText primary="Services" />
-        </ListItem>
-        <ListItem
-          button
-          component={Link}
           to="/contact"
           onClick={handleLinkClick}
         >
@@ -136,9 +125,6 @@ const Header: React.FC = () => {
             </Button>
             <Button color="inherit" component={Link} to="/about">
               About
-            </Button>
-            <Button color="inherit" component={Link} to="/services">
-              Services
             </Button>
             <Button color="inherit" component={Link} to="/contact">
               Contact

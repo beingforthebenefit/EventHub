@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {gql, useMutation} from '@apollo/client'
+import {useMutation} from '@apollo/client'
 import {Container, TextField, Button, Typography, Box} from '@mui/material'
 import {useNotification} from '../contexts/NotificationContext'
 import { REGISTER_EVENT } from '../queries/eventQueries'

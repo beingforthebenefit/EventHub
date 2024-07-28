@@ -83,7 +83,6 @@ describe('Header component', () => {
     expect(screen.getByText(/Home/i)).toBeVisible()
     expect(screen.getByText(/Events/i)).toBeVisible()
     expect(screen.getByText(/About/i)).toBeVisible()
-    expect(screen.getByText(/Services/i)).toBeVisible()
     expect(screen.getByText(/Contact/i)).toBeVisible()
 
     // Simulate closing the drawer
@@ -93,7 +92,6 @@ describe('Header component', () => {
     // TODO: Fix this test
     // expect(screen.queryByText(/Home/i)).not.toBeVisible();
     // expect(screen.queryByText(/About/i)).not.toBeVisible();
-    // expect(screen.queryByText(/Services/i)).not.toBeVisible();
     // expect(screen.queryByText(/Contact/i)).not.toBeVisible();
   })
 })
