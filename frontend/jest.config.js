@@ -1,9 +1,9 @@
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { compilerOptions } = require('./tsconfig');
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/@/$1',
-  },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
 };

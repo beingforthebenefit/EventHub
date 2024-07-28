@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import Message from './Message'
 
 const Dashboard: React.FC = () => {
   return (
@@ -24,7 +23,7 @@ const Dashboard: React.FC = () => {
         <Grid item xs={12} md={6}>
           <Paper style={{padding: '16px'}}>
             <Typography>
-              <Message />
+              This is a dashboard for the EventHub application
             </Typography>
           </Paper>
         </Grid>

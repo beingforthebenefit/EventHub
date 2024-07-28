@@ -9,6 +9,9 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
 
   backend:
     build:
@@ -21,6 +24,9 @@ services:
       - DATABASE_URL=postgresql://eventhub_user:password@db:5432/eventhub?schema=public
     depends_on:
       - db
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
 
   db:
     image: postgres:13
