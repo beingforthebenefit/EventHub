@@ -1,170 +1,124 @@
-# Project Template
+# EventHub
 
-## Overview
+EventHub is a modern event management and registration platform.
 
-This project is a template for creating web applications using React and Material-UI on the frontend, and Apollo Client setup for GraphQL. It includes responsive navigation menus for both desktop and mobile, and a basic dashboard layout. The backend is set up with Node.js, TypeScript, and Apollo Server for GraphQL.
+## Table of Contents
 
-## Features
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Running the Application](#running-the-application)
+  - [With Docker](#with-docker)
+- [Running Tests](#running-tests)
+- [Ports](#ports)
+- [Environment Variables](#environment-variables)
 
-- **React**: Frontend library for building user interfaces.
-- **Material-UI**: UI framework for React with pre-built components.
-- **Apollo Client**: State management library for GraphQL.
-- **Apollo Server**: GraphQL server for the backend.
-- **Responsive Design**: Navigation menu adapts to desktop and mobile screens.
-- **Jest**: Testing framework for unit tests.
+## Project Structure
+
++++
+.
+├── backend
+│   ├── src
+│   │   ├── resolvers
+│   │   ├── prisma
+│   │   ├── __tests__
+│   ├── package.json
+│   ├── Dockerfile
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   ├── package.json
+│   ├── Dockerfile
+├── docker-compose.yml
+└── README.md
++++
+
+## Technologies Used
+
+- **Frontend:**
+  - React
+  - Material-UI
+  - Apollo Client
+
+- **Backend:**
+  - Node.js
+  - Express
+  - Prisma
+  - Apollo Server
+  - PostgreSQL
+
+- **Testing:**
+  - Jest
+  - React Testing Library
+
+- **Deployment:**
+  - Docker
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js and npm installed on your machine.
-- Docker installed on your machine (optional, for containerized deployment).
+- Docker and Docker Compose installed on your machine.
+- Node.js and npm (for local development).
 
 ### Installation
 
-1. Clone the repository:
+Clone the repository:
 
-    ```bash
-    git clone https://github.com/beingforthebenefit/project-template.git
-    cd project-template
-    ```
++++bash
+git clone https://github.com/yourusername/eventhub.git
+cd eventhub
++++
 
-2. Install dependencies for both frontend and backend:
+## Running the Application
 
-    ```bash
-    cd frontend
-    npm install
-    cd ../backend
-    npm install
-    ```
+### With Docker
 
-3. Start the development servers:
+Build and start the Docker containers:
 
-    ```bash
-    # In one terminal, start the backend
-    cd backend
-    npm run dev
-
-    # In another terminal, start the frontend
-    cd frontend
-    npm start
-    ```
-
-4. Open your browser and navigate to `http://localhost:3000` for the frontend and `http://localhost:4000/graphql` for the GraphQL playground.
-
-## Project Structure
-
-```plaintext
-project-template/
-├── backend
-│   ├── Dockerfile
-│   ├── jest.config.js
-│   ├── jest.setup.ts
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── src
-│   │   ├── index.ts
-│   │   ├── resolvers
-│   │   │   └── MessageResolver.ts
-│   │   └── __tests__
-│   │       └── MessageResolver.test.ts
-│   └── tsconfig.json
-├── docker-compose.yml
-├── frontend
-│   ├── components.json
-│   ├── craco.config.js
-│   ├── Dockerfile
-│   ├── jest.config.js
-│   ├── jest.setup.ts
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── postcss.config.js
-│   ├── public
-│   │   ├── favicon.ico
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   └── robots.txt
-│   ├── README.md
-│   ├── src
-│   │   ├── apolloClient.ts
-│   │   ├── App.css
-│   │   ├── App.test.tsx
-│   │   ├── App.tsx
-│   │   ├── components
-│   │   │   ├── Dashboard.test.tsx
-│   │   │   ├── Dashboard.tsx
-│   │   │   ├── Footer.test.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   ├── Header.test.tsx
-│   │   │   ├── Header.tsx
-│   │   │   ├── Message.test.tsx
-│   │   │   └── Message.tsx
-│   │   ├── index.css
-│   │   ├── index.tsx
-│   │   ├── logo.svg
-│   │   ├── react-app-env.d.ts
-│   │   ├── reportWebVitals.ts
-│   │   ├── setupTests.ts
-│   │   └── store.ts
-│   └── tsconfig.json
-├── LICENSE
-└── README.md
-```
-
-### Important Files
-
-- **backend/src/resolvers/MessageResolver.ts**: Contains the resolver for the GraphQL message query.
-- **backend/src/index.ts**: Sets up the Apollo Server for GraphQL.
-- **frontend/src/components/Header.tsx**: Contains the app header with responsive navigation menus and an account menu.
-- **frontend/src/components/Footer.tsx**: Contains the app footer.
-- **frontend/src/components/Dashboard.tsx**: Contains the dashboard layout.
-- **frontend/src/components/Message.tsx**: Fetches and displays a message from the GraphQL server.
-- **frontend/src/apolloClient.ts**: Sets up Apollo Client for GraphQL.
-- **frontend/src/App.tsx**: Main application component.
-- **frontend/src/App.test.tsx**: Tests for the main application component.
-
-## Usage
-
-### Navigation
-
-The navigation menu adapts to different screen sizes:
-- On desktop screens, the menu items are displayed as horizontal links in the header.
-- On mobile screens, the menu items are hidden behind a hamburger menu.
-
-### Account Menu
-
-The account menu appears in the upper right corner of the header and includes options for "Profile", "My account", and "Logout".
-
-### GraphQL
-
-The project uses Apollo Client to interact with a GraphQL server. The `Message` component demonstrates how to fetch and display data from the server.
-
-## Testing
-
-This project uses Jest for testing. To run the tests, use the following command:
-
-```bash
-npm run test
-```
-
-## Docker Deployment
-
-To run the project using Docker, ensure Docker is installed and then use the following commands:
-
-```bash
-# Build and run the containers
++++bash
 docker-compose up --build
++++
 
-# Stop the containers
-docker-compose down
-```
+This command will build the Docker images and start the containers for the frontend, backend, and PostgreSQL database.
 
-## Contributing
+Access the application:
 
-If you would like to contribute to this project, please fork the repository and submit a pull request.
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend: [http://localhost:4000/graphql](http://localhost:4000/graphql)
 
-## License
+## Running Tests
 
-This project is licensed under the MIT License.
+To run tests for the frontend and backend, use the following commands:
+
+- **Frontend Tests:**
+  +++bash
+  cd frontend
+  npm run test
+  +++
+
+- **Backend Tests:**
+  +++bash
+  cd backend
+  npm run test
+  +++
+
+## Ports
+
+- **Frontend:** `3000`
+- **Backend:** `4000`
+- **Database:** `5432`
+
+## Environment Variables
+
+Create a `.env` file in the root of the `backend` directory with the following content:
+
++++env
+DATABASE_URL=postgresql://eventhub_user:password@db:5432/eventhub?schema=public
+SECRET=your_jwt_secret
++++
+
+Make sure to replace `your_jwt_secret` with a secure secret for JWT.

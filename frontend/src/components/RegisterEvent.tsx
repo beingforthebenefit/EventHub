@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {gql, useMutation} from '@apollo/client'
 import {Container, TextField, Button, Typography, Box} from '@mui/material'
 import {useNotification} from '../contexts/NotificationContext'
-import { REGISTER_EVENT } from 'src/queries/eventQueries'
+import { REGISTER_EVENT } from '../queries/eventQueries'
 
 const RegisterEvent: React.FC = () => {
   const [eventId, setEventId] = useState('')
