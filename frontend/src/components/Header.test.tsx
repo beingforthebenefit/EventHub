@@ -4,17 +4,14 @@ import Header from './Header'
 import {ThemeProvider, createTheme} from '@mui/material/styles'
 import {MemoryRouter} from 'react-router-dom'
 
-// Create a theme for the test
 const theme = createTheme()
 
-// Utility function to simulate window resize event
 const resizeWindow = (width: number, height: number) => {
   window.innerWidth = width
   window.innerHeight = height
   window.dispatchEvent(new Event('resize'))
 }
 
-// Mock jwtDecode to return a fake email
 jest.mock('jwt-decode', () => ({
   jwtDecode: jest.fn(() => ({email: 'test@example.com'})),
 }))
