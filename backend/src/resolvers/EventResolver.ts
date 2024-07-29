@@ -5,11 +5,12 @@ import {
   Arg,
   Int,
   Authorized,
-  Ctx,
+  Ctx
 } from 'type-graphql'
 import {Event} from '../models/Event'
 import prisma from '../prisma'
 import {Context} from '../types/Context'
+import { DateTimeResolver } from 'graphql-scalars'
 
 @Resolver()
 export class EventResolver {
@@ -39,15 +40,21 @@ export class EventResolver {
     })
   }
 
+  @Authorized()
   @Mutation(() => Event)
   async createEvent(
     @Arg('title') title: string,
     @Arg('description') description: string,
-    @Arg('date') date: Date,
+    @Arg('date', () => DateTimeResolver) date: Date,
     @Arg('location') location: string,
   ): Promise<Event> {
-    return prisma.event.create({
-      data: {title, description, date, location},
+    return await prisma.event.create({
+      data: {
+        title,
+        description,
+        date,
+        location,
+      },
     })
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
-import { GET_EVENT } from '../queries/eventQueries'
+import {useParams} from 'react-router-dom'
+import {useQuery} from '@apollo/client'
+import {GET_EVENT} from '../queries/eventQueries'
 import {
   CircularProgress,
   Container,
@@ -13,15 +13,16 @@ import {
 } from '@mui/material'
 
 const EventDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { id: id ? parseInt(id) : undefined },
+  const {id} = useParams<{id: string}>()
+  const {loading, error, data} = useQuery(GET_EVENT, {
+    variables: {id: id ? parseInt(id) : undefined},
   })
 
   if (loading) return <CircularProgress />
-  if (error) return <Typography color="error">Error: {error.message}</Typography>
+  if (error)
+    return <Typography color="error">Error: {error.message}</Typography>
 
-  const { event } = data
+  const {event} = data
 
   return (
     <Container>

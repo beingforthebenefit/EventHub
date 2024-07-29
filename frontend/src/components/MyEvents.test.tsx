@@ -1,19 +1,17 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import EventList from './EventList'
-import { GET_EVENTS } from '../queries/eventQueries'
-import { CircularProgress } from '@mui/material'
-import { BrowserRouter } from 'react-router-dom'
+import MyEvents from './MyEvents'
+import { GET_MY_EVENTS } from '../queries/eventQueries'
 
 const mocks = [
   {
     request: {
-      query: GET_EVENTS,
+      query: GET_MY_EVENTS,
     },
     result: {
       data: {
-        events: [
+        myEvents: [
           {
             id: 1,
             title: 'Event 1',
@@ -34,13 +32,11 @@ const mocks = [
   },
 ]
 
-test('renders EventList component and shows CircularProgress while loading', async () => {
+test('renders MyEvents component and shows CircularProgress while loading', async () => {
   render(
-    <BrowserRouter>
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <EventList />
-      </MockedProvider>
-    </BrowserRouter>,
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <MyEvents />
+    </MockedProvider>,
   )
 
   // Check if CircularProgress is displayed while loading

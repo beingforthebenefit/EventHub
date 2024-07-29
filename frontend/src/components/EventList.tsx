@@ -1,6 +1,6 @@
 import React from 'react'
-import { useQuery } from '@apollo/client'
-import { GET_EVENTS } from '../queries/eventQueries'
+import {useQuery} from '@apollo/client'
+import {GET_EVENTS} from '../queries/eventQueries'
 import {
   CircularProgress,
   Container,
@@ -12,22 +12,14 @@ import {
   CardActions,
   Button,
 } from '@mui/material'
+import {Link} from 'react-router-dom'
 
 const EventList = () => {
-  const { loading, error, data } = useQuery(GET_EVENTS)
+  const {loading, error, data} = useQuery(GET_EVENTS)
 
   if (loading) return <CircularProgress />
   if (error)
     return <Typography color="error">Error: {error.message}</Typography>
-
-  const handleLearnMore = (id: number) => {
-    window.location.href = `/events/${id}`
-  }
-
-  const handleRegister = (id: number) => {
-    // handle event registration logic here
-    // for example, you might open a modal or navigate to a registration page
-  }
 
   return (
     <Container>
@@ -35,6 +27,15 @@ const EventList = () => {
         <Typography variant="h4" gutterBottom>
           Event List
         </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to="/create-event"
+          style={{marginBottom: '20px'}}
+        >
+          Create New Event
+        </Button>
         <Grid container spacing={3}>
           {data.events.map((event: any) => (
             <Grid item xs={12} md={4} key={event.id}>
@@ -54,10 +55,15 @@ const EventList = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary" onClick={() => handleLearnMore(event.id)}>
+                  <Button
+                    size="small"
+                    color="primary"
+                    component={Link}
+                    to={`/events/${event.id}`}
+                  >
                     Learn More
                   </Button>
-                  <Button size="small" color="secondary" onClick={() => handleRegister(event.id)}>
+                  <Button size="small" color="secondary">
                     Register
                   </Button>
                 </CardActions>

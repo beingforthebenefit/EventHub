@@ -22,6 +22,7 @@ import {ThemeProvider} from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
 import {NotificationProvider} from './contexts/NotificationContext'
+import CreateEvent from './components/CreateEvent'
 
 const PrivateRoute = ({children}: {children: React.ReactNode}) => {
   const token = localStorage.getItem('token')
@@ -59,6 +60,14 @@ function App() {
                     element={
                       <PrivateRoute>
                         <RegisterEvent />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/create-event"
+                    element={
+                      <PrivateRoute>
+                        <CreateEvent />
                       </PrivateRoute>
                     }
                   />
