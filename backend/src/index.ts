@@ -9,6 +9,7 @@ import {Context} from './types/Context'
 import jwt from 'jsonwebtoken'
 
 const SECRET = process.env.SECRET || 'your_secret_key'
+
 async function main() {
   const schema = await buildSchema({
     resolvers: [UserResolver, EventResolver, RegistrationResolver],
@@ -20,7 +21,8 @@ async function main() {
   const server = new ApolloServer({
     schema,
     context: ({req, res}): Context => {
-      const token = req.headers.authorization || ''
+      const authHeader = req.headers.authorization || ''
+      const token = authHeader.split(' ')[1]
       let userId
       if (token) {
         try {

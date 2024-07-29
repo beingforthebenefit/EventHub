@@ -51,7 +51,7 @@ test('renders EventDetail component and fetches event details', async () => {
   )
 
   // Check if loading state is displayed
-  expect(screen.getByText(/Loading.../i)).toBeInTheDocument()
+  expect(screen.getByRole('progressbar')).toBeInTheDocument()
 
   // Wait for the query to complete
   await waitFor(() => {

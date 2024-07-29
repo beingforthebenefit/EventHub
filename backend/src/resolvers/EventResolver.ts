@@ -1,6 +1,15 @@
-import {Resolver, Query, Mutation, Arg, Int} from 'type-graphql'
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Arg,
+  Int,
+  Authorized,
+  Ctx,
+} from 'type-graphql'
 import {Event} from '../models/Event'
 import prisma from '../prisma'
+import {Context} from '../types/Context'
 
 @Resolver()
 export class EventResolver {
@@ -13,6 +22,20 @@ export class EventResolver {
   async event(@Arg('id', () => Int) id: number): Promise<Event | null> {
     return prisma.event.findUnique({
       where: {id},
+    })
+  }
+
+  @Authorized()
+  @Query(() => [Event])
+  async myEvents(@Ctx() ctx: Context): Promise<Event[]> {
+    return prisma.event.findMany({
+      where: {
+        registrations: {
+          some: {
+            userId: ctx.userId,
+          },
+        },
+      },
     })
   }
 

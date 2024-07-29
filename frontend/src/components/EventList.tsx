@@ -1,6 +1,6 @@
 import React from 'react'
-import {useQuery} from '@apollo/client'
-import {GET_EVENTS} from '../queries/eventQueries'
+import { useQuery } from '@apollo/client'
+import { GET_EVENTS } from '../queries/eventQueries'
 import {
   CircularProgress,
   Container,
@@ -14,11 +14,20 @@ import {
 } from '@mui/material'
 
 const EventList = () => {
-  const {loading, error, data} = useQuery(GET_EVENTS)
+  const { loading, error, data } = useQuery(GET_EVENTS)
 
   if (loading) return <CircularProgress />
   if (error)
     return <Typography color="error">Error: {error.message}</Typography>
+
+  const handleLearnMore = (id: number) => {
+    window.location.href = `/events/${id}`
+  }
+
+  const handleRegister = (id: number) => {
+    // handle event registration logic here
+    // for example, you might open a modal or navigate to a registration page
+  }
 
   return (
     <Container>
@@ -45,8 +54,11 @@ const EventList = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary">
+                  <Button size="small" color="primary" onClick={() => handleLearnMore(event.id)}>
                     Learn More
+                  </Button>
+                  <Button size="small" color="secondary" onClick={() => handleRegister(event.id)}>
+                    Register
                   </Button>
                 </CardActions>
               </Card>

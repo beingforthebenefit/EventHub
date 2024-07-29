@@ -42,8 +42,16 @@ function App() {
                   <Route path="/" element={<EventList />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
-                  <Route path="/my-events" element={<MyEvents />} />
+                  <Route path="/events" element={<EventList />} />
                   <Route path="/events/:id" element={<EventDetail />} />
+                  <Route
+                    path="/my-events"
+                    element={
+                      <PrivateRoute>
+                        <MyEvents />
+                      </PrivateRoute>
+                    }
+                  />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
                   <Route
